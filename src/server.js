@@ -26,10 +26,8 @@ const urlStruct = {
 
 // Handle POST requests from class demo
 const handlePost = (request, response, parsedUrl) => {
-  
   // If we're in addUser of course
   if (parsedUrl.pathname === '/addUser') {
-    
     const res = response;
     const body = [];
 

@@ -1,5 +1,5 @@
 {
-  "name": "http-api-assignment-ii",
+  "name": "Project-I",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/akp4657/http-api-assignment-ii.git"
+    "url": "git+https://github.com/akp4657/430-project-1.git"
   },
   "author": "Anthony Pichardo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/akp4657/http-api-assignment-ii/issues"
+    "url": "https://github.com/akp4657/430-project-1.git/issues"
   },
-  "homepage": "https://github.com/akp4657/http-api-assignment-ii#readme",
+  "homepage": "https://github.com/akp4657/430-project-1.git#readme",
   "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
