@@ -66,6 +66,19 @@
       const nameMethod = nameForm.getAttribute('method');
       const nameField = nameForm.querySelector('#nameField');
       const ageField = nameForm.querySelector('#ageField');
+
+      const lightStartField = nameForm.querySelector('#lightStartField');
+      const lightRecovField = nameForm.querySelector('#lightRecovField');
+
+      const medStartField = nameForm.querySelector('#medStartField');
+      const medRecovField = nameForm.querySelector('#medRecovField');
+
+      const hevStartField = nameForm.querySelector('#hevStartField');
+      const hevRecovField = nameForm.querySelector('#hevRecovField');
+
+      const specField = nameForm.querySelector('#specField');
+      const specStartField = nameForm.querySelector('#specStartField');
+      const specRecovField = nameForm.querySelector('#specRecovField');
       const xhr = new XMLHttpRequest();
 
       // Initialize the request
@@ -78,7 +91,17 @@
       // Handle the response
       xhr.onload = () => handleResponse(xhr, true);
       
-      const formData = `name=${nameField.value}&age=${ageField.value}`;
+
+      // How to fomrat this
+      const formData = `name=${nameField.value}&lightStart=${lightStartField.value}
+      &light recov=${lightRecovField.value}
+      &med start=${medStartField.value}
+      &med recov=${medRecovField.value}
+      &hev start=${hevStartField.value}
+      &hev recov=${hevRecovField.value}
+      &spec name=${specField.value}
+      &spec start=${specStartField.value}
+      &spec recov=${specRecovField.value}`;
       
       // Send our request with the data
       xhr.send(formData);
@@ -134,11 +157,44 @@
   <section id="top">
     <h3>POST Status Code Tests</h3>
     <form id="nameForm" action="/addUser" method="post">
+      <div id =nameDiv>
       <label for="name">Name: </label>
       <input id="nameField" type="text" name="name" />
-      <label for="age">Age: </label>
-      <input id="ageField" type="number" name="age" min="0" max="100" step="1"/>
-      <input type="submit" value="Add User" />
+      </div>
+
+      <div id =lightDiv>
+      <label for="lightAttack">Light Attack: </label>
+      <label for="lightStart">Start Up Frames: </label>
+      <input id="lightStartField" type="number" name="age" min="0" max="100" step="1"/>
+      <label for="lightRecov"> Recovery Frames: </label>
+      <input id="lightRecovField" type="number" name="age" min="-100" max="100" step="1"/>
+    </div>
+
+    <div id =medDiv>
+      <label for="mediumAttack">Medium Attack: </label>
+      <label for="medStart">Start Up Frames: </label>
+      <input id="medStartField" type="number" name="age" min="0" max="100" step="1"/>
+      <label for="medRecov"> Recovery Frames: </label>
+      <input id="medRecovField" type="number" name="age" min="-100" max="100" step="1"/>
+    </div>
+
+    <div id =hevDiv>
+      <label for="heavyAttack">Heavy Attack: </label>
+      <label for="hevStart">Start Up Frames: </label>
+      <input id="hevStartField" type="number" name="age" min="0" max="100" step="1"/>
+      <label for="hevRecov"> Recovery Frames: </label>
+      <input id="hevRecovField" type="number" name="age" min="-100" max="100" step="1"/>
+    </div>
+
+    <div id =specDiv>
+      <label for="specialMove">Special Move Name: </label>
+      <input id="specField" type="text" name="name" />
+      <label for="specStart"> Start Up Frames: </label>
+      <input id="specStartField" type="number" name="age" min="-100" max="100" step="1"/>
+      <label for="specRecov"> Recovery Frames: </label>
+      <input id="specRecovField" type="number" name="age" min="-100" max="100" step="1"/>
+    </div>
+      <input type="submit" value="Add Character" />
     </form>
     <form id="userForm" action="/getUsers" method="get">
       <select id='urlField'>

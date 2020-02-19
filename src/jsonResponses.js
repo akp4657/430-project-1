@@ -43,8 +43,9 @@ const addUser = (request, response, body) => {
     message: 'Name and age are both required.',
   };
 
+  console.dir(body.name);
   // If either are empty, return immediately
-  if (!body.name || !body.age) {
+  if (!checkBody(body)) {
     responseJSON.id = 'missingParams';
     return respondJSON(request, response, 400, responseJSON);
   }
@@ -60,7 +61,7 @@ const addUser = (request, response, body) => {
   }
 
   users[body.name].name = body.name;
-  users[body.name].age = body.age;
+  users[body.name].lightStart = body.lightStart;
 
   // Exit after creating the user
   if (responseCode === 201) {
@@ -69,6 +70,27 @@ const addUser = (request, response, body) => {
   }
   return respondJSONMeta(request, response, responseCode);
 };
+
+
+// Iterating through objects to check the body 
+// https://stackoverflow.com/questions/8312459/iterate-through-object-properties
+const checkBody = (body) => {
+  let truthValue = false;
+
+  for (let prop in body) {
+    if (Object.prototype.hasOwnProperty.call(body, prop)) {
+        if(!body[prop])
+        {
+          truthValue = false;
+        }else{
+          truthValue = true;
+        }
+    }
+  }
+  return truthValue;
+
+
+}
 
 // public exports
 module.exports = {
