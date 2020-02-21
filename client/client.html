@@ -96,16 +96,10 @@
       
 
       // How to fomrat this
-      const formData = `name=${nameField.value}&lightStart=${lightStartField.value}
-      &light recov=${lightRecovField.value}
-      &med start=${medStartField.value}
-      &med recov=${medRecovField.value}
-      &hev start=${hevStartField.value}
-      &hev recov=${hevRecovField.value}
-      &spec name=${specField.value}
-      &spec start=${specStartField.value}
-      &spec recov=${specRecovField.value}
-      &look=${imageField.value}`;
+      const formData = `name=${nameField.value}&lightStart=${lightStartField.value}&
+      light recov=${lightRecovField.value}&med start=${medStartField.value}&med recov=${medRecovField.value}&
+      hev start=${hevStartField.value}&hev recov=${hevRecovField.value}&spec name=${specField.value}&
+      spec start=${specStartField.value}&spec recov=${specRecovField.value}&look=${imageField.value}`;
 
           img.src = `${imageField.value}`;
           console.dir(img.src);

@@ -1,6 +1,23 @@
 // Storing in memory
 const users = {};
 
+// Iterating through objects to check the body
+// https://stackoverflow.com/questions/8312459/iterate-through-object-properties
+const checkBody = (body) => {
+  let truthValue = false;
+  const values = Object.values(body);
+
+  for (let i = 0; i < values.length; i++) {
+    if (values[i]) {
+      truthValue = true;
+    } else {
+      truthValue = false;
+      return;
+    }
+  }
+  return truthValue;
+};
+
 // Respond with a JSON object
 const respondJSON = (request, response, status, object) => {
   response.writeHead(status, { 'Content-Type': 'application/json' });
@@ -71,27 +88,6 @@ const addUser = (request, response, body) => {
   }
   return respondJSONMeta(request, response, responseCode);
 };
-
-
-// Iterating through objects to check the body 
-// https://stackoverflow.com/questions/8312459/iterate-through-object-properties
-const checkBody = (body) => {
-  let truthValue = false;
-
-  for (let prop in body) {
-    if (Object.prototype.hasOwnProperty.call(body, prop)) {
-        if(!body[prop])
-        {
-          truthValue = false;
-        }else{
-          truthValue = true;
-        }
-    }
-  }
-  return truthValue;
-
-
-}
 
 // public exports
 module.exports = {
