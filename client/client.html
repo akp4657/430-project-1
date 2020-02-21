@@ -50,14 +50,6 @@
           const users = JSON.stringify(obj.users);
           userList.textContent = users;
           content.appendChild(userList);
-
-          const img = document.createElement('img');
-          img.src = `${obj.look}`;
-          console.dir(img.src);
-          const src = document.querySelector('#imgDiv');
-          src.appendChild(img);
-          src.width = src.width/2;
-          src.height = src.height/2;
         }
       }
 
@@ -113,6 +105,14 @@
       &spec start=${specStartField.value}
       &spec recov=${specRecovField.value}
       &look=${imageField.value}`;
+
+      const img = document.createElement('img');
+          img.src = `${imageField.value}`;
+          console.dir(img.src);
+          const src = document.querySelector('#imgDiv');
+          src.appendChild(img);
+          src.width = src.width/2;
+          src.height = src.height/2;
       
       // Send our request with the data
       xhr.send(formData);
