@@ -106,10 +106,12 @@
       &spec start=${specStartField.value}
       &spec recov=${specRecovField.value}`;
 
-      //img.src = `${imageField.value}`;
-      //console.dir(img.src);
-      //const src = document.querySelector('#imgDiv');
-      //src.appendChild(img);
+      img.src = `${imageField.value}`;
+      console.dir(img.src);
+      const src = document.querySelector('#imgDiv');
+      src.appendChild(img);
+      src.width = src.width/2;
+      src.height = src.height/2;
       
       // Send our request with the data
       xhr.send(formData);
@@ -209,7 +211,7 @@
       </div>
     </div>
 
-    <div id=imgDiv><img src="https://i.imgur.com/fWlIrLa.jpg"></div>
+    <div id=imgDiv></div>
 
       <input type="submit" value="Add Character" />
       <label for="imgLabel">Your Look</label>
