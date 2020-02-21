@@ -12,7 +12,7 @@ const checkBody = (body) => {
       truthValue = true;
     } else {
       truthValue = false;
-      return;
+      break;
     }
   }
   return truthValue;
