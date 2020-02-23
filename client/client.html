@@ -12,6 +12,8 @@
     // Handling response
     const handleResponse = (xhr, parseResponse) => {
       const content = document.querySelector('#content');
+      const keyField = userForm.querySelector('#keyField');
+
       
       // Check the status code
       switch(xhr.status) {
@@ -36,7 +38,7 @@
 
         // Parse the response
         const obj = JSON.parse(xhr.response);
-        console.dir(obj);
+        //console.dir(obj);
       
         // If we need the message, display it
         if(obj.message) {
@@ -45,8 +47,13 @@
           content.appendChild(p);
         }
       
-        //  If it's just users, display users
-        if(obj.users) {
+        if (obj.users) {
+          if(keyField.value) {
+            const keyD = JSON.stringify(obj.users[keyField.value]);
+            console.dir("Users: " + keyD);
+            return;
+            
+          }
           const userList = document.createElement('p');
           const users = JSON.stringify(obj.users);
           userList.textContent = users;
@@ -102,7 +109,7 @@
       spec start=${specStartField.value}&spec recov=${specRecovField.value}&look=${imageField.value}`;
 
           img.src = `${imageField.value}`;
-          console.dir(img.src);
+          //console.dir(img.src);
       
       // Send our request with the data
       xhr.send(formData);
@@ -219,6 +226,7 @@
         <option value='/getUsers'>/getUsers</option>
         <option value='/notReal'>/notReal</option>
       </select>
+      <input id="keyField" type="text"/>
       <select id="methodSelect">
         <option value="get">GET</option>
         <option value="head">HEAD</option>
