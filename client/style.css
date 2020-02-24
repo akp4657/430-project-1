@@ -24,7 +24,7 @@ html, body {
     margin: 50px auto;
     border: solid 5px black;
     padding: 10px;
-    width: 750px;
+    width: 1000px;
     height: 300px;
     text-align: center;
     position: relative;
@@ -34,29 +34,53 @@ html, body {
     border: solid 5px red;
     padding: 10px;
     position: absolute;
-    width: 200px;
+    width: 300px;
     text-align: center;
     float: left;
-    margin-left: 55%;
-    margin-top: 10%;
+    margin-left: 65%;
+    margin-top: 0%;
   }
 
   #medDiv, #hevDiv {
     border: solid 5px red;
     padding: 10px;
     position: absolute;
-    width: 200px;
+    width: 300px;
+    height: 300px;
     text-align: center;
     float: left;
     margin-left: 15%;
-    margin-top: 10%;
+    margin-bottom: 5%;
   }
 
 
-  label {
-    padding: 5px;
-    margin: 0 auto;
+
+  div > label {
+    margin-top: 5px;
+    color: green;
   }
+
+  
+  div > input {
+    margin-top: 5px;
+    color: blue;
+    width: 100px;
+  }
+
+  #top {
+    border: solid 5px purple;
+    width: 80%;
+    padding: 30px;
+    margin-top: 50px;
+  }
+
+  img {
+    border-radius: 50%;
+    max-width: 50%;
+    max-height: 50%;
+  }
+
+
 
   #userContent:empty {
     display: none;

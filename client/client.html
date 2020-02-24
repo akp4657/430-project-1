@@ -188,25 +188,27 @@
   <section id="top">
     <h3>POST Status Code Tests</h3>
     <form id="nameForm" action="/addUser" method="post">
-      <div id =nameDiv>
       <label for="name">Name: </label>
       <input id="nameField" type="text" name="name" />
-      </div>
 
     <div id =divOne>
 
       <div id="lightDiv">
-        <label for="lightAttack">Light Attack: </label>
+        <label id = "attackLabel" for="lightAttack">Light Attack: </label>
+        <br/>
         <label for="lightStart">Start Up Frames: </label>
         <input id="lightStartField" type="number" name="age" min="0" max="100" step="1"/>
+        <br/>
         <label for="lightRecov"> Recovery Frames: </label>
         <input id="lightRecovField" type="number" name="age" min="-100" max="100" step="1"/>
       </div>
 
       <div id="medDiv">
-        <label for="mediumAttack">Medium Attack: </label>
+        <label id = "attackLabel" for="mediumAttack">Medium Attack: </label>
+        <br/>
         <label for="medStart">Start Up Frames: </label>
         <input id="medStartField" type="number" name="age" min="0" max="100" step="1"/>
+        <br/>
         <label for="medRecov"> Recovery Frames: </label>
         <input id="medRecovField" type="number" name="age" min="-100" max="100" step="1"/>
       </div>
@@ -215,18 +217,23 @@
     <div id =divTwo>
 
       <div id="hevDiv">
-        <label for="heavyAttack">Heavy Attack: </label>
+        <label id = "attackLabel" for="heavyAttack">Heavy Attack: </label>
+        <br/>
         <label for="hevStart">Start Up Frames: </label>
         <input id="hevStartField" type="number" name="age" min="0" max="100" step="1"/>
+        <br/>
         <label for="hevRecov"> Recovery Frames: </label>
         <input id="hevRecovField" type="number" name="age" min="-100" max="100" step="1"/>
       </div>
 
       <div id=specDiv>
         <label for="specialMove">Special Move Name: </label>
+        <br/>
         <input id="specField" type="text" name="name" />
+        <br/>
         <label for="specStart"> Start Up Frames: </label>
         <input id="specStartField" type="number" name="age" min="-100" max="100" step="1"/>
+        <br/>
         <label for="specRecov"> Recovery Frames: </label>
         <input id="specRecovField" type="number" name="age" min="-100" max="100" step="1"/>
       </div>
