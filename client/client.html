@@ -133,9 +133,9 @@
       
       if(!keyField.value) {
         if(userContent.firstChild) {
-              console.dir("I have a child");
-              userContent.removeChild(userContent.firstChild);
-            }
+          console.dir("I have a child");
+          userContent.removeChild(userContent.firstChild);
+        }
         userForm.querySelector('#urlField').value = '/notReal';
       } else {
         userForm.querySelector('#urlField').value = '/getUsers';
