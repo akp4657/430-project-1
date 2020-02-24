@@ -20,7 +20,7 @@ html, body {
     text-align: center;
   }
 
-  #divOne, #divTwo {
+  #divOne, #divTwo, #userContent {
     margin: 50px auto;
     border: solid 5px black;
     padding: 10px;
@@ -56,4 +56,8 @@ html, body {
   label {
     padding: 5px;
     margin: 0 auto;
+  }
+
+  #userContent:empty {
+    display: none;
   }

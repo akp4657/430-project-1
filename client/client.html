@@ -12,9 +12,11 @@
     // Handling response
     const handleResponse = (xhr, parseResponse) => {
       const content = document.querySelector('#content');
+      const userContent = document.querySelector('#userContent');
       const keyField = userForm.querySelector('#keyField');
+      const keyExists = true;
 
-      
+
       // Check the status code
       switch(xhr.status) {
         case 200: //success
@@ -49,15 +51,18 @@
       
         if (obj.users) {
           if(keyField.value) {
+
+            if(userContent.firstChild) {
+              console.dir("I have a child");
+              userContent.removeChild(userContent.firstChild);
+            }
+            const userKey = document.createElement('p');
             const keyD = JSON.stringify(obj.users[keyField.value]);
             console.dir("Users: " + keyD);
+            userKey.textContent = keyD;
+            userContent.appendChild(userKey);
             return;
-            
           }
-          const userList = document.createElement('p');
-          const users = JSON.stringify(obj.users);
-          userList.textContent = users;
-          content.appendChild(userList);
         }
       }
 
@@ -123,7 +128,19 @@
       
       //cancel browser's default action
       e.preventDefault();
+
+      const keyField = userForm.querySelector('#keyField');
       
+      if(!keyField.value) {
+        if(userContent.firstChild) {
+              console.dir("I have a child");
+              userContent.removeChild(userContent.firstChild);
+            }
+        userForm.querySelector('#urlField').value = '/notReal';
+      } else {
+        userForm.querySelector('#urlField').value = '/getUsers';
+      }
+
       const url = userForm.querySelector('#urlField').value;
       const method = userForm.querySelector('#methodSelect').value;
       
@@ -223,7 +240,9 @@
 
     </form>
     <form id="userForm" action="/getUsers" method="get">
+
       <option id='urlField' value ="/getUsers"></select>
+        
       <input id="keyField" type="text"/>
       <select id="methodSelect">
         <option value="get">GET</option>
@@ -232,7 +251,7 @@
       <input type="submit" value="Send"/>
     </form>
   </section>
-  <section id="content">
-  </section>
+  <section id="content"></section>
+  <div id="userContent"></div>
 </body>
 </html>
