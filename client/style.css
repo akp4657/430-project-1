@@ -77,10 +77,18 @@ html, body {
     border-radius: 50%;
     max-width: 50%;
     max-height: 50%;
+    padding: 20px;
   }
 
 
 
-  #userContent:empty {
+
+  /* hiding the div.div2 element (and its content)
+   if it's the next element-sibling of div.div1: */
+   #userContent:empty {
     display: none;
+  }
+
+  #userContent > p {
+    float: left;
   }

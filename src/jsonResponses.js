@@ -77,9 +77,26 @@ const addUser = (request, response, body) => {
     users[body.name] = {};
   }
 
+  // Names
   users[body.name].name = body.name;
+  users[body.name].specName = body.specName;
+
+  // Start up frames
   users[body.name].lightStart = body.lightStart;
+  users[body.name].medStart = body.medStart;
+  users[body.name].hevStart = body.hevStart;
+  users[body.name].specStart = body.specStart;
+
+  // Recovery frames
+  users[body.name].lightRecov = body.lightRecov;
+  users[body.name].medRecov = body.medRecov;
+  users[body.name].hevRecov = body.hevRecov;
+  users[body.name].specRecov = body.specRecov;
+
+  // Image link
   users[body.name].look = body.look;
+
+  console.dir(users);
 
   // Exit after creating the user
   if (responseCode === 201) {

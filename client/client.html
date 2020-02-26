@@ -56,11 +56,55 @@
               console.dir("I have a child");
               userContent.removeChild(userContent.firstChild);
             }
-            const userKey = document.createElement('p');
-            const keyD = JSON.stringify(obj.users[keyField.value]);
+
+            // Making the content
+            const userName = document.createElement('h3');
+            const keyD = JSON.stringify(obj.users[keyField.value].name);
             console.dir("Users: " + keyD);
-            userKey.textContent = keyD;
-            userContent.appendChild(userKey);
+            userName.innerHTML = `Name: ${keyD}`;
+            userContent.appendChild(userName);
+
+            const lightAttack = document.createElement('h4');
+            const keyLightS = JSON.stringify(obj.users[keyField.value].lightStart);
+            const keyLightR = JSON.stringify(obj.users[keyField.value].lightRecov);
+            console.dir("Users: " + keyD);
+            lightAttack.innerHTML = `Light Attack: ${keyLightS} frames of startup and ${keyLightR} frames of recovery`;
+            userContent.appendChild(lightAttack);
+
+            const medAttack = document.createElement('h4');
+            const keyMedS = JSON.stringify(obj.users[keyField.value].medStart);
+            const keyMedR = JSON.stringify(obj.users[keyField.value].medRecov);
+            console.dir("Users: " + keyD);
+            medAttack.innerHTML = `Medium Attack: ${keyMedS} frames of startup and ${keyMedR} frames of recovery`;
+            userContent.appendChild(medAttack);
+
+            const hevAttack = document.createElement('h4');
+            const keyHevS = JSON.stringify(obj.users[keyField.value].hevStart);
+            const keyHevR = JSON.stringify(obj.users[keyField.value].hevRecov);
+            console.dir("Users: " + keyD);
+            hevAttack.innerHTML = `Heavy Attack: ${keyHevS} frames of startup and ${keyHevR} frames of recovery`;
+            userContent.appendChild(hevAttack);
+
+            const specName = document.createElement('h3');
+            const specAttack = document.createElement('h4');
+            const keySpecS = JSON.stringify(obj.users[keyField.value].specStart);
+            const keySpecR = JSON.stringify(obj.users[keyField.value].specRecov);
+            const keySpecN = JSON.stringify(obj.users[keyField.value].specName);
+            console.dir("Users: " + keyD);
+            specName.innerHTML = `Special Move: ${keySpecN}`;
+            specAttack.innerHTML = `Special Move: ${keySpecS} frames of startup and ${keySpecR} frames of recovery`;
+            userContent.appendChild(specName);
+            userContent.appendChild(specAttack);
+
+            const fighterImg = document.createElement('img');
+            const keyLook = JSON.stringify(obj.users[keyField.value].look);
+            console.dir("Users: " + keyD);
+            fighterImg.src = fighterImg
+            userContent.appendChild(fighterImg);
+            
+
+
+
             return;
           }
         }
@@ -108,10 +152,7 @@
       
 
       // How to fomrat this
-      const formData = `name=${nameField.value}&lightStart=${lightStartField.value}&
-      light recov=${lightRecovField.value}&med start=${medStartField.value}&med recov=${medRecovField.value}&
-      hev start=${hevStartField.value}&hev recov=${hevRecovField.value}&spec name=${specField.value}&
-      spec start=${specStartField.value}&spec recov=${specRecovField.value}&look=${imageField.value}`;
+      const formData = `name=${nameField.value}&lightStart=${lightStartField.value}&lightRecov=${lightRecovField.value}&medStart=${medStartField.value}&medRecov=${medRecovField.value}&hevStart=${hevStartField.value}&hevRecov=${hevRecovField.value}&specName=${specField.value}&specStart=${specStartField.value}&specRecov=${specRecovField.value}&look=${imageField.value}`;
 
           img.src = `${imageField.value}`;
           //console.dir(img.src);
@@ -161,6 +202,17 @@
       xhr.send();
       
       return false;
+    };
+
+    const checkBody = (body, keyField) => {
+      let truthValue = false;
+      const values = Object.values(body);
+      if (values[0] === keyField.value) {
+        truthValue = true;
+      } else {
+        truthValue = false;
+      }
+      return truthValue;
     };
 
     const init = () => {
