@@ -109,8 +109,9 @@
 
             const fighterImg = document.createElement('img');
             const keyLook = JSON.stringify(obj.users[keyField.value].look);
-            fighterImg.src = keyLook;
+            fighterImg.src = `${obj.users[keyField.value].look}`;
             userContent.appendChild(fighterImg);
+            console.dir(fighterImg.src);
 
             return;
           }
