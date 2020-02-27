@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Our simple HTTP server</title>
+  <title>Create a Fighter</title>
   <link rel="stylesheet" type="text/css" href="/style.css">
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
@@ -52,7 +52,8 @@
         if (obj.users) {
           if(keyField.value) {
 
-            if(userContent.firstChild) {
+            // Clearing the board
+            while(userContent.firstChild) {
               console.dir("I have a child");
               userContent.removeChild(userContent.firstChild);
             }
@@ -64,26 +65,10 @@
             userName.innerHTML = `Name: ${keyD}`;
             userContent.appendChild(userName);
 
-            const lightAttack = document.createElement('h4');
-            const keyLightS = JSON.stringify(obj.users[keyField.value].lightStart);
-            const keyLightR = JSON.stringify(obj.users[keyField.value].lightRecov);
-            console.dir("Users: " + keyD);
-            lightAttack.innerHTML = `Light Attack: ${keyLightS} frames of startup and ${keyLightR} frames of recovery`;
-            userContent.appendChild(lightAttack);
-
-            const medAttack = document.createElement('h4');
-            const keyMedS = JSON.stringify(obj.users[keyField.value].medStart);
-            const keyMedR = JSON.stringify(obj.users[keyField.value].medRecov);
-            console.dir("Users: " + keyD);
-            medAttack.innerHTML = `Medium Attack: ${keyMedS} frames of startup and ${keyMedR} frames of recovery`;
-            userContent.appendChild(medAttack);
-
-            const hevAttack = document.createElement('h4');
-            const keyHevS = JSON.stringify(obj.users[keyField.value].hevStart);
-            const keyHevR = JSON.stringify(obj.users[keyField.value].hevRecov);
-            console.dir("Users: " + keyD);
-            hevAttack.innerHTML = `Heavy Attack: ${keyHevS} frames of startup and ${keyHevR} frames of recovery`;
-            userContent.appendChild(hevAttack);
+            // Since these repeat, just put them in a function
+            appendMove(obj.users[keyField.value].lightStart, obj.users[keyField.value].lightRecov, "Light Attack");
+            appendMove(obj.users[keyField.value].medStart, obj.users[keyField.value].medRecov, "Medium Attack");
+            appendMove(obj.users[keyField.value].hevStart, obj.users[keyField.value].hevRecov, "Heavy Attack");
 
             const specName = document.createElement('h3');
             const specAttack = document.createElement('h4');
@@ -101,13 +86,16 @@
             console.dir("Users: " + keyD);
             fighterImg.src = fighterImg
             userContent.appendChild(fighterImg);
-            
-
-
 
             return;
           }
         }
+      }
+
+      // Clearing the board if it's a head request
+      while(userContent.firstChild) {
+        console.dir("I have a child");
+        userContent.removeChild(userContent.firstChild);
       }
 
     };
@@ -153,7 +141,6 @@
 
       // How to fomrat this
       const formData = `name=${nameField.value}&lightStart=${lightStartField.value}&lightRecov=${lightRecovField.value}&medStart=${medStartField.value}&medRecov=${medRecovField.value}&hevStart=${hevStartField.value}&hevRecov=${hevRecovField.value}&specName=${specField.value}&specStart=${specStartField.value}&specRecov=${specRecovField.value}&look=${imageField.value}`;
-
           img.src = `${imageField.value}`;
           //console.dir(img.src);
       
@@ -215,6 +202,17 @@
       return truthValue;
     };
 
+    const appendMove = (startUp, recov, type)=> {
+      const content = document.querySelector('#content');
+      const userContent = document.querySelector('#userContent');
+
+      const attack = document.createElement('h4');
+      const keyS = JSON.stringify(startUp);
+      const keyR = JSON.stringify(recov);
+      attack.innerHTML = `${type}: ${keyS} frames of startup and ${keyR} frames of recovery`;
+      userContent.appendChild(attack);
+    }
+
     const init = () => {
       const nameForm = document.querySelector('#nameForm');
       const userForm = document.querySelector('#userForm');
@@ -237,10 +235,10 @@
   </script>
 </head>
 <body>
+  <h1>Create Your Fighter!</h3>
   <section id="top">
-    <h3>POST Status Code Tests</h3>
     <form id="nameForm" action="/addUser" method="post">
-      <label for="name">Name: </label>
+      <label id="name"for="name">Name: </label>
       <input id="nameField" type="text" name="name" />
 
     <div id =divOne>
@@ -292,7 +290,7 @@
     </div>
 
 
-    <label for="imgLabel">Your Look</label>
+    <label id= "imgLabel" for="imgLabel">Your Look</label>
     <input id="imgFighter" type="text" name="name" />
     <br/>
     <input type="submit" value="Add Character" />
@@ -301,7 +299,7 @@
     </form>
     <form id="userForm" action="/getUsers" method="get">
 
-      <option id='urlField' value ="/getUsers"></select>
+      <option id='urlField' value ="/getUsers"></option>
         
       <input id="keyField" type="text"/>
       <select id="methodSelect">

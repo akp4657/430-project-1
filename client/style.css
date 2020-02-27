@@ -3,15 +3,30 @@ html, body {
     width: 100%;
     margin: 0;
     padding: 0;
+    background-color: #0d0d0d;
   }
   
   #top {
     text-align: center;
     margin: 0 auto;
+    border-radius: 25px;
+    border: solid 5px black;
+    width: 80%;
+    padding: 30px;
+    margin-top: 50px;
+    background-color:#1c252c;
   }
   
-  #top h1 {
+  h1 {
     font-size: 2em;
+    text-align: center;
+    margin-top: 2%;
+    color: #c62a52;
+  }
+
+  b, p {
+    color: #c62a52;
+
   }
   
   #content {
@@ -24,53 +39,73 @@ html, body {
     margin: 50px auto;
     border: solid 5px black;
     padding: 10px;
-    width: 1000px;
+    width: 75%;
     height: 300px;
     text-align: center;
     position: relative;
+    background-color: #413E39;
+    border-radius: 25px;
+
+    
   }
 
-  #lightDiv, #specDiv {
-    border: solid 5px red;
+  #medDiv, #specDiv {
+    /*border: solid 5px red;*/
     padding: 10px;
     position: absolute;
-    width: 300px;
+    width: 500px;
     text-align: center;
     float: left;
-    margin-left: 55%;
+    margin-left: 45%;
     margin-top: 10%;
   }
 
-  #medDiv, #hevDiv {
-    border: solid 5px red;
+  #lightDiv, #hevDiv {
+    /*border: solid 5px red;*/
     padding: 10px;
     position: absolute;
-    width: 300px;
+    width: 500px;
     text-align: center;
     float: left;
-    margin-left: 10%;
+    margin-left: -5%;
     margin-top: 10%;
+  }
+
+  #medDiv, #lightDiv, #hevDiv {
+    margin-top: 5%
+  }
+
+  #specDiv {
+    margin-top: 3%;
   }
 
 
 
   div > label {
-    margin-top: 5px;
-    color: green;
+    margin-top: 150px;
+    color: #68ecba;
+    font-size: 24px;
   }
 
-  
+  #specField { 
+    margin-top: 10px;
+  }
+
+
   div > input {
-    margin-top: 5px;
+    margin-top: 50px;
     color: blue;
     width: 100px;
   }
 
-  #top {
-    border: solid 5px purple;
-    width: 80%;
-    padding: 30px;
-    margin-top: 50px;
+  #name {
+    font-size: 36px;
+    color: #5CA1F0;
+
+  }
+
+  #imgLabel {
+    color: #5CA1F0;
   }
 
   img {
@@ -80,15 +115,20 @@ html, body {
     padding: 20px;
   }
 
+  #urlField {
+    display: none;
+  }
 
-
-
-  /* hiding the div.div2 element (and its content)
-   if it's the next element-sibling of div.div1: */
    #userContent:empty {
     display: none;
   }
 
-  #userContent > p {
-    float: left;
+  #userContent {
+    width: 45%;
+    padding: 30px;
+  }
+
+  #userContent{
+    color: #68ecba;
+
   }
