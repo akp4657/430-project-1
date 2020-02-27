@@ -53,6 +53,19 @@ const notReal = (request, response) => {
 
 const notRealMeta = (request, response) => respondJSONMeta(request, response, 404);
 
+
+// If there is no user, send a bad request
+const noUser = (request, response) => {
+  const responseJSON = {
+    message: 'The user you are looking for was not found',
+    id: 'notUser',
+  };
+
+  return respondJSON(request, response, 400, responseJSON);
+};
+
+const noUserMeta = (request, response) => respondJSONMeta(request, response, 400);
+
 // Add a user with POST method from class
 const addUser = (request, response, body) => {
   // Default message is it fails
@@ -96,7 +109,7 @@ const addUser = (request, response, body) => {
   // Image link
   users[body.name].look = body.look;
 
-  console.dir(users);
+  // console.dir(users);
 
   // Exit after creating the user
   if (responseCode === 201) {
@@ -113,5 +126,6 @@ module.exports = {
   notReal,
   notRealMeta,
   getUsersMeta,
-
+  noUser,
+  noUserMeta,
 };

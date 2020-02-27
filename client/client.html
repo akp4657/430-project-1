@@ -8,6 +8,10 @@
   <script type="text/babel">
 
     const img = document.createElement('img');
+    
+    // Global object array
+    let objectGlobal = [];
+    let i = 0;
 
     // Handling response
     const handleResponse = (xhr, parseResponse) => {
@@ -40,6 +44,7 @@
 
         // Parse the response
         const obj = JSON.parse(xhr.response);
+        
         //console.dir(obj);
       
         // If we need the message, display it
@@ -50,6 +55,29 @@
         }
       
         if (obj.users) {
+
+          // If the user actually exists
+          if(obj.users[keyField.value] != undefined) {
+
+            // Add it to the global list
+            objectGlobal[i] = obj.users[keyField.value].name;
+            i++;
+          }
+          else {
+
+            // If the user puts something first that isn't in the array
+            // we have to let them know that there's nothing there.
+            // Unfortunately, I can't figure out how to set it up to be a 
+            // bad request
+            const p = document.createElement('p');
+            p.textContent = "Message: Sorry, that doesn't exist";
+            content.innerHTML = '';
+            content.appendChild(p);
+            return;
+          }
+
+
+          // If there is something in the field.
           if(keyField.value) {
 
             // Clearing the board
@@ -61,7 +89,6 @@
             // Making the content
             const userName = document.createElement('h3');
             const keyD = JSON.stringify(obj.users[keyField.value].name);
-            console.dir("Users: " + keyD);
             userName.innerHTML = `Name: ${keyD}`;
             userContent.appendChild(userName);
 
@@ -75,7 +102,6 @@
             const keySpecS = JSON.stringify(obj.users[keyField.value].specStart);
             const keySpecR = JSON.stringify(obj.users[keyField.value].specRecov);
             const keySpecN = JSON.stringify(obj.users[keyField.value].specName);
-            console.dir("Users: " + keyD);
             specName.innerHTML = `Special Move: ${keySpecN}`;
             specAttack.innerHTML = `Special Move: ${keySpecS} frames of startup and ${keySpecR} frames of recovery`;
             userContent.appendChild(specName);
@@ -83,8 +109,7 @@
 
             const fighterImg = document.createElement('img');
             const keyLook = JSON.stringify(obj.users[keyField.value].look);
-            console.dir("Users: " + keyD);
-            fighterImg.src = fighterImg
+            fighterImg.src = keyLook;
             userContent.appendChild(fighterImg);
 
             return;
@@ -94,7 +119,6 @@
 
       // Clearing the board if it's a head request
       while(userContent.firstChild) {
-        console.dir("I have a child");
         userContent.removeChild(userContent.firstChild);
       }
 
@@ -141,8 +165,9 @@
 
       // How to fomrat this
       const formData = `name=${nameField.value}&lightStart=${lightStartField.value}&lightRecov=${lightRecovField.value}&medStart=${medStartField.value}&medRecov=${medRecovField.value}&hevStart=${hevStartField.value}&hevRecov=${hevRecovField.value}&specName=${specField.value}&specStart=${specStartField.value}&specRecov=${specRecovField.value}&look=${imageField.value}`;
-          img.src = `${imageField.value}`;
-          //console.dir(img.src);
+      
+      // Put the image on display
+      img.src = `${imageField.value}`;
       
       // Send our request with the data
       xhr.send(formData);
@@ -157,22 +182,29 @@
       //cancel browser's default action
       e.preventDefault();
 
+      // Get the keyField
       const keyField = userForm.querySelector('#keyField');
-      
-      if(!keyField.value) {
+
+      // If there's nothing in the value or there isn't an object with that key
+      if(!keyField.value || !checkObject(objectGlobal, keyField)) {
+
+        // Take away the message
         if(userContent.firstChild) {
           console.dir("I have a child");
           userContent.removeChild(userContent.firstChild);
         }
-        userForm.querySelector('#urlField').value = '/notReal';
+        
+        // Give the user a bad request
+        userForm.querySelector('#urlField').value = '/noUser';
       } else {
+
+        // Otherwise, there is a getUser
         userForm.querySelector('#urlField').value = '/getUsers';
       }
 
       const url = userForm.querySelector('#urlField').value;
       const method = userForm.querySelector('#methodSelect').value;
       
-      console.dir(url);
       // Create a new AJAX request
       const xhr = new XMLHttpRequest();
       xhr.open(method, url);
@@ -191,17 +223,35 @@
       return false;
     };
 
-    const checkBody = (body, keyField) => {
-      let truthValue = false;
-      const values = Object.values(body);
-      if (values[0] === keyField.value) {
-        truthValue = true;
-      } else {
-        truthValue = false;
+    // Checking to see if there is an object
+    const checkObject = (body, keyField) => {
+
+      // This happens on the first instance given 
+      // just return true regardless so we can get a user
+      if(body[0] === undefined) {
+        return true;
       }
+      
+      // Set the value to false by default
+      let truthValue = false;
+
+      // Iterate through the object
+      for(let i = 0; i < body.length; i++) {
+      
+        // If the value matches the object keys,
+        // set to true and eventually return.
+        // Otherwise, set it to false and return immediately
+        if(keyField.value === body[i]) {
+          truthValue = true;
+        } else {
+          truthValue = false;
+          break;
+        }
+      } 
       return truthValue;
     };
 
+    // Appending the light, medium, and heavy attacks with one function
     const appendMove = (startUp, recov, type)=> {
       const content = document.querySelector('#content');
       const userContent = document.querySelector('#userContent');
