@@ -289,7 +289,8 @@
   <h1>Create Your Fighter!</h3>
   <section id="top">
     <form id="nameForm" action="/addUser" method="post">
-      <label id="name"for="name">Name: </label>
+      <label id="name"for="name">Name</label>
+      <br/>
       <input id="nameField" type="text" name="name" />
 
     <div id =divOne>
@@ -342,9 +343,10 @@
 
 
     <label id= "imgLabel" for="imgLabel">Your Look</label>
+    <br/>
     <input id="imgFighter" type="text" name="name" />
     <br/>
-    <input type="submit" value="Add Character" />
+    <input id="addFighter" type="submit" value="Add Character" />
     <div id=imgDiv></div>
 
     </form>
@@ -357,7 +359,7 @@
         <option value="get">GET</option>
         <option value="head">HEAD</option>
       </select>
-      <input type="submit" value="Send"/>
+      <input id="sendFighter" type="submit" value="Send"/>
     </form>
   </section>
   <section id="content"></section>
