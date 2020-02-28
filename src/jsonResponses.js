@@ -2,7 +2,7 @@
 const users = {};
 const userList = [];
 
-let i = 0;
+let k = 0;
 
 // Iterating through objects to check the body
 // https://stackoverflow.com/questions/8312459/iterate-through-object-properties
@@ -113,10 +113,8 @@ const addUser = (request, response, body) => {
   // Image link
   users[body.name].look = body.look;
 
-  userList[i] = users[body.name].name;
-  i++;
-  console.dir(userList);
-  console.dir(i);
+  userList[k] = users[body.name].name;
+  k++;
 
   // console.dir(users);
 
