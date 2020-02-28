@@ -56,27 +56,6 @@
       
         if (obj.users) {
 
-          // If the user actually exists
-          if(obj.users[keyField.value] != undefined) {
-
-            // Add it to the global list
-            objectGlobal[i] = obj.users[keyField.value].name;
-            i++;
-          }
-          else {
-
-            // If the user puts something first that isn't in the array
-            // we have to let them know that there's nothing there.
-            // Unfortunately, I can't figure out how to set it up to be a 
-            // bad request
-            const p = document.createElement('p');
-            p.textContent = "Message: Sorry, that doesn't exist";
-            content.innerHTML = '';
-            content.appendChild(p);
-            return;
-          }
-
-
           // If there is something in the field.
           if(keyField.value) {
 
@@ -169,6 +148,9 @@
       
       // Put the image on display
       img.src = `${imageField.value}`;
+
+      objectGlobal[i] = nameField.value;
+      i++;
       
       // Send our request with the data
       xhr.send(formData);
@@ -226,12 +208,6 @@
 
     // Checking to see if there is an object
     const checkObject = (body, keyField) => {
-
-      // This happens on the first instance given 
-      // just return true regardless so we can get a user
-      if(body[0] === undefined) {
-        return true;
-      }
       
       // Set the value to false by default
       let truthValue = false;
@@ -242,11 +218,11 @@
         // If the value matches the object keys,
         // set to true and eventually return.
         // Otherwise, set it to false and return immediately
-        if(keyField.value === body[i]) {
+        if(keyField.value == body[i]) {
           truthValue = true;
+          break;
         } else {
           truthValue = false;
-          break;
         }
       } 
       return truthValue;
