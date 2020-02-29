@@ -216,6 +216,7 @@ html, body {
   #userContent {
     width: 45%;
     padding: 30px;
+    height: 100%;
   }
 
   #userContent{
