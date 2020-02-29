@@ -199,7 +199,7 @@ html, body {
   }
 
   img {
-    border-radius: 50%;
+    border-radius: 25%;
     max-width: 50%;
     max-height: 50%;
     padding: 20px;

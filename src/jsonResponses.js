@@ -1,6 +1,5 @@
 // Storing in memory
 const users = {};
-const userList = [];
 
 let k = 0;
 
@@ -38,7 +37,6 @@ const respondJSONMeta = (request, response, status) => {
 const getUsers = (request, response) => {
   const responseJSON = {
     users,
-    userList,
   };
 
   respondJSON(request, response, 200, responseJSON);
@@ -74,7 +72,7 @@ const noUserMeta = (request, response) => respondJSONMeta(request, response, 400
 const addUser = (request, response, body) => {
   // Default message is it fails
   const responseJSON = {
-    message: 'Name and age are both required.',
+    message: 'All fields must be filled',
   };
 
   // console.dir(body.name);
@@ -113,10 +111,7 @@ const addUser = (request, response, body) => {
   // Image link
   users[body.name].look = body.look;
 
-  userList[k] = users[body.name].name;
-  k++;
-
-  // console.dir(users);
+  console.dir(users);
 
   // Exit after creating the user
   if (responseCode === 201) {
