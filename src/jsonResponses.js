@@ -1,8 +1,6 @@
 // Storing in memory
 const users = {};
 
-let k = 0;
-
 // Iterating through objects to check the body
 // https://stackoverflow.com/questions/8312459/iterate-through-object-properties
 const checkBody = (body) => {
