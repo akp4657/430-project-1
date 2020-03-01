@@ -46,8 +46,6 @@
 
         // Parse the response
         const obj = JSON.parse(xhr.response);
-        
-        //console.dir(obj);
       
         // If we need the message, display it
         if(obj.message) {
@@ -63,7 +61,6 @@
 
             // Clearing the board
             while(userContent.firstChild) {
-              console.dir("I have a child");
               userContent.removeChild(userContent.firstChild);
             }
 
@@ -173,7 +170,6 @@
 
         // Take away the message
         if(userContent.firstChild) {
-          console.dir("I have a child");
           userContent.removeChild(userContent.firstChild);
         }
         
@@ -250,8 +246,6 @@
       
       userForm.addEventListener('submit', getUsers);
       nameForm.addEventListener('submit', addUser);
-
-      console.dir(objectGlobal);
     };
 
 

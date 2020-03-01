@@ -42,6 +42,8 @@ const getUsers = (request, response) => {
 
 const getUsersMeta = (request, response) => respondJSONMeta(request, response, 200);
 
+
+// 404 response
 const notReal = (request, response) => {
   const responseJSON = {
     message: 'The page you are looking for was not found',
